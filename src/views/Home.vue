@@ -8,13 +8,16 @@
 </style>
 
 <script>
+import axios from "axios";
 export default {
   data: function() {
     return {
       message: "Kickstands Up"
     };
   },
-  created: function() {},
+  created: function() {
+    console.log(axios.defaults.headers.common["Authorization"]);
+  },
   methods: {}
 };
 </script>
