@@ -1,0 +1,78 @@
+<template>
+  <div class="rides-new">
+    <div class="container">
+      <form v-on:submit.prevent="newRide()">
+        <h1>Create a ride</h1>
+        <ul>
+          <li class="text-danger" v-for="error in errors">{{ error }}</li>
+        </ul>
+        <div class="form-group">
+          <label>Name:</label> 
+          <input type="text" class="form-control" v-model="rideName">
+        </div>
+        <div class="form-group">
+          <label>Date & Time:</label>
+          <input type="text" class="form-control" v-model="rideDateTime">
+        </div>
+        <div class="form-group">
+          <label>Start location:</label>
+          <input type="text" class="form-control" v-model="rideStart">
+        </div>
+        <div class="form-group">
+          <label>End location:</label>
+          <input type="text" class="form-control" v-model="rideEnd">
+        </div>
+        <div class="form-group">
+          <label>Distance:</label>
+          <input type="text" class="form-control" v-model="distance">
+        </div>
+        <div class="form-group">
+          <label>Bike type:</label>
+          <input type="text" class="form-control" v-model="bikeType">
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit">
+      </form>
+    </div>
+  </div>
+</template>
+
+<style>
+</style>
+
+<script>
+import axios from "axios";
+export default {
+  data: function() {
+    return {
+      rideName: "",
+      rideDateTime: "",
+      rideStart: "",
+      rideEnd: "",
+      distance: "",
+      bikeType: "",
+      errors: []
+
+    };
+  },
+  created: function() {},
+  methods: {
+    newRide: function() {
+      var params = {
+        name: this.rideName,
+        date_time: this.rideDateTime,
+        starting_point: this.rideStart,
+        end_point: this.rideEnd,
+        ride_distance: this.distance,
+        bike_type: this.bikeType
+      };
+      axios.post("/api/rides", params).then(response => {
+        this.$router.push("/rides");
+        console.log(response.data);
+      })
+        .catch(error => {
+          this.errors = error.response.data.errors;
+        });
+    }
+  }
+};
+</script>

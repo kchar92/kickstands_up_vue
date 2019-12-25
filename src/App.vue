@@ -6,6 +6,9 @@
       <router-link to="/signup">Signup</router-link> |
       <router-link to="/login">Login</router-link> |
       <router-link to="/logout">Logout</router-link>
+      <br>
+      <router-link to="/rides">Rides</router-link> |
+      <router-link to="/rides/new">Make a new ride</router-link>
     </div>
     <router-view/>
   </div>

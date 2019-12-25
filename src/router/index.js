@@ -5,6 +5,7 @@ import Signup from '../views/Signup.vue';
 import Login from '../views/Login.vue';
 import Logout from '../views/Logout.vue';
 import RidesIndex from '../views/RidesIndex.vue';
+import RidesNew from '../views/RidesNew';
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,11 @@ const routes = [
     path: '/rides',
     name: 'rides',
     component: RidesIndex
+  },
+  {
+    path: '/rides/new',
+    name: 'rides-new',
+    component: RidesNew
   }
 ];
 
