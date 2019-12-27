@@ -7,7 +7,8 @@
       <router-link to="/login">Login</router-link> |
       <router-link to="/logout">Logout</router-link>
       <br>
-      <router-link to="/rides">Rides</router-link> |
+      <router-link to="/rides?attending=true">My rides</router-link> |
+      <router-link to="/rides?attending=false">Rides</router-link> |
       <router-link to="/rides/new">Make a new ride</router-link>
     </div>
     <router-view/>

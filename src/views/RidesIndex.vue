@@ -1,12 +1,13 @@
 <template>
-  <div class="home">
-    <button v-on:click="myRides()">My rides</button>
-    <button v-on:click="otherRides()">See other rides</button>
+  <div class="rides-index">
+    <!-- <button v-on:click="otherRides()">See other rides</button> -->
     <h1>{{ message }}</h1>
     <div v-for="ride in rides">
       <p>Name: {{ ride.ride }}</p>
       <p>Date & Time: {{ ride.date_time }}</p>
       <router-link v-bind:to="`/rides/${ride.id}`">More details</router-link>
+      <br>
+      <button v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
       <hr>
     </div>
   </div>
@@ -21,25 +22,28 @@ export default {
   data: function() {
     return {
       message: "Rides",
-      rides: []
+      rides: [],
+      attending: this.$route.query.attending !== "true"
     };
   },
   created: function() {
-    axios.get("/api/rides").then(response => {
+    console.log(this.attending);
+    axios.get("/api/rides?attending=" + this.$route.query.attending).then(response => {
+      console.log(response.data);
       this.rides = response.data;
     });
   },
   methods: {
-    myRides: function() {
-      axios.get("/api/rides?attending=true").then(response => {
-        this.rides = response.data;
+    addRide: function(ride) {
+      console.log('adding ride');
+      axios.get("/api/rides/" + ride.id).then(response => {
+        // need to figure this logic out still
       });
-      
-    },
-    otherRides: function() {
-      axios.get("/api/rides").then(response => {
-        this.rides = response.data;
-      });
+    }
+  },
+  watch: {
+    "$route": function() {
+      window.location.reload();
     }
   }
 };
