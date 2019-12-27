@@ -6,10 +6,7 @@
     <div v-for="ride in rides">
       <p>Name: {{ ride.ride }}</p>
       <p>Date & Time: {{ ride.date_time }}</p>
-      <p>Starting: {{ ride.starting_point }}</p>
-      <p>Ending: {{ ride.ending_point }}</p>
-      <p>Distance: {{ ride.distance }}</p>
-      <p>Bike Type: {{ ride.bike_type }}</p>
+      <router-link v-bind:to="`/rides/${ride.id}`">More details</router-link>
       <hr>
     </div>
   </div>
