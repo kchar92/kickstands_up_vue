@@ -7,7 +7,6 @@
     <p>Distance: {{ ride.distance }}</p>
     <p>Bike Type: {{ ride.bike_type }}</p>
     <button v-on:click="removeRide(ride)">Remove ride</button>
-    <router-link to="/rides?attending=true">Back to attending rides</router-link>
   </div>
 </template>
 

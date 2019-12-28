@@ -36,8 +36,12 @@ export default {
   methods: {
     addRide: function(ride) {
       console.log('adding ride');
-      axios.get("/api/rides/" + ride.id).then(response => {
-        // need to figure this logic out still
+      var params = {
+        ride_id: ride.id
+      };
+      axios.post("/api/ride_users", params).then(response => {
+        this.rides.splice(ride, 1);
+        this.$router.push("/rides");
       });
     }
   },
