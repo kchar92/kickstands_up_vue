@@ -4,7 +4,7 @@
     <div v-for="station in stations">
       <p>Name: {{ station.name }}</p>
       <p>Address: {{ station.address }},
-      {{ station.city }}</p>
+      {{ station.city }} {{ station.state }}</p>
       <p>Brand: {{ station.brand }}</p>
       <p>Octane: {{ station.octane }}</p>
       <p>Phone Number: {{ station.phone_number }}</p>
