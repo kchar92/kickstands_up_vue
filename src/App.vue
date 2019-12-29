@@ -9,7 +9,8 @@
       <br>
       <router-link to="/rides?attending=true">My rides</router-link> |
       <router-link to="/rides?attending=false">Rides</router-link> |
-      <router-link to="/rides/new">Make a new ride</router-link>
+      <router-link to="/rides/new">Make a new ride</router-link> |
+      <router-link to="/stations">Ethanol Free Stations</router-link>
     </div>
     <router-view/>
   </div>
