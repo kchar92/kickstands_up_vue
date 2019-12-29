@@ -6,7 +6,6 @@
     <p>Ending: {{ ride.end_point }}</p>
     <p>Distance: {{ ride.distance }}</p>
     <p>Bike Type: {{ ride.bike_type }}</p>
-    <button v-on:click="removeRide(ride)">Remove ride</button>
   </div>
 </template>
 
@@ -18,7 +17,8 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      ride: {}
+      ride: {},
+      attending: this.$route.query.attending !== "false"
     };
   },
   created: function() {
@@ -27,11 +27,6 @@ export default {
     });
   },
   methods: {
-    removeRide: function(ride) {
-      axios.delete("/api/rides/" + ride.id).then(response => {
-        this.$router.push("/rides");
-      });
-    }
   }
 };
 </script>

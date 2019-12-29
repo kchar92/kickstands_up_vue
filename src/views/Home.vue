@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
+    <p>An app for motorcycle riders...</p>
   </div>
 </template>
 
