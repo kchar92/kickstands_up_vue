@@ -8,7 +8,7 @@
       <router-link v-bind:to="`/rides/${ride.id}`">More details</router-link>
       <br>
       <button v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
-      <button v-if="!attending" v-on:click="removeRide(ride)">Remove ride</button>
+      <!-- <button v-if="!attending" v-on:click="removeRide(ride)">Remove ride</button> -->
       <hr>
     </div>
   </div>
@@ -44,15 +44,15 @@ export default {
         this.rides.splice(ride, 1);
       });
     },
-    removeRide: function(ride) {
-      console.log("deleting ride");
-      // var rideUser = {
-      //   ride_id: ride.id
-      // };
-      // axios.delete("/api/ride_users/" + rideUser.id).then(response => {
-      //   this.$router.push("/rides?attending=true");
-      // });
-    }
+    // removeRide: function(ride) {
+    //   console.log("deleting ride");
+    //   var rideUser = {
+    //     ride_id: ride.id
+    //   };
+    //   axios.delete("/api/ride_users/" + rideUser.id).then(response => {
+    //     this.$router.push("/rides?attending=true");
+    //   });
+    // }
   },
   watch: {
     "$route": function() {
