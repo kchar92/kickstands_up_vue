@@ -43,9 +43,6 @@ export default {
       
     };
   },
-  mounted() {
-    this.geolocate();
-  },
   created: function() {
     axios.get("/api/rides/" + this.$route.params.id).then(response => {
       this.ride = response.data;
@@ -53,7 +50,12 @@ export default {
         lat: this.ride.starting_point_lat,
         lng: this.ride.starting_point_long
       };
+      var end = {
+        lat: this.ride.end_point_lat,
+        lng: this.ride.end_point_long
+      };
       this.markers.push({position: start});
+      this.markers.push({position: end});
       this.center = start;
     });
 
