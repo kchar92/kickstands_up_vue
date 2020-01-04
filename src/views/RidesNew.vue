@@ -12,7 +12,8 @@
         </div>
         <div class="form-group">
           <label>Date & Time:</label>
-          <input type="text" class="form-control" v-model="rideDateTime">
+          <datetime format="DD/MM/YYYY h:i" width="300px" v-model="rideDateTime"></datetime>
+          <!-- <input type="text" class="form-control" v-model="rideDateTime"> -->
         </div>
         <div class="form-group">
           <label>Start location:</label>
@@ -40,8 +41,10 @@
 </style>
 
 <script>
+import datetime from 'vuejs-datetimepicker';
 import axios from "axios";
 export default {
+  components: { datetime },
   data: function() {
     return {
       rideName: "",
@@ -51,7 +54,6 @@ export default {
       distance: "",
       bikeType: "",
       errors: []
-
     };
   },
   created: function() {},
