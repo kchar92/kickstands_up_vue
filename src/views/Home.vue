@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
     <p>An app for motorcycle riders...</p>
   </div>
 </template>
@@ -13,7 +12,6 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      message: "Kickstands Up"
     };
   },
   created: function() {
