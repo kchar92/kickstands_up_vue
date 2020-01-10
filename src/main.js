@@ -3,8 +3,8 @@ import App from './App.vue';
 import router from './router';
 import axios from "axios";
 import * as VueGoogleMaps from "vue2-google-maps";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 Vue.use(VueGoogleMaps, {
   load: {

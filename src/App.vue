@@ -1,5 +1,21 @@
 <template>
-  <div id="app">
+
+   <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/signup">Signup</router-link> |
+      <router-link to="/login">Login</router-link> |
+      <router-link to="/logout">Logout</router-link>
+      <br>
+      <router-link to="/rides?attending=true">My rides</router-link> |
+      <router-link to="/rides?attending=false">Rides</router-link> |
+      <router-link to="/rides/new">Make a new ride</router-link> |
+      <router-link to="/stations">Ethanol Free Stations</router-link>
+    </div>
+    <router-view/>
+  </div>
+  <!-- BOOTSTRAP -->
+ <!--  <div id="app">
     <div class="container">
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -35,12 +51,12 @@
       </nav>
       <router-view/>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style>
 
-/*#app {
+#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -59,5 +75,5 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}*/
+}
 </style>

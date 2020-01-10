@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
           <label>Date & Time:</label>
-          <datetime format="DD/MM/YYYY h:i" width="300px" v-model="rideDateTime"></datetime>
+          <datetime format="DD/MM/YYYY h:i" width="100px" v-model="rideDateTime"></datetime>
           <!-- <input type="text" class="form-control" v-model="rideDateTime"> -->
         </div>
         <div class="form-group">

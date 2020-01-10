@@ -6,8 +6,10 @@
         :zoom="12"
         style="width:100%;  height: 500px;">
 
-        <gmap-marker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center=m.position" :icon="markerOptions">
-          
+        <gmap-marker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center=m.position" :icon="markerOptions">   
+        </gmap-marker>
+
+        <gmap-marker :key="index.id" v-for="(m, index) in endMarkers" :position="m.position" @click="center=m.position" :icon="endMarkerOptions">
         </gmap-marker>
       </gmap-map>
 
@@ -30,6 +32,7 @@
 import * as VueGoogleMaps from "vue2-google-maps";
 import axios from "axios";
 const startMarker = ('http://maps.google.com/mapfiles/kml/shapes/motorcycling.png');
+const endMarker = ('http://maps.google.com/mapfiles/kml/shapes/flag.png');
 export default {
   
   data: function() {
@@ -37,8 +40,15 @@ export default {
       ride: {},
       center: { lat: 45.508, lng: -73.587 },
       markers: [],
+      endMarkers: [],
+      infoWindows: [],
       markerOptions: {
         url: startMarker,
+        size: {width: 50, height: 50, f: 'px', b: 'px',},
+        scaledSize: {width: 30, height: 30, f: 'px', b: 'px',}
+      },
+      endMarkerOptions: {
+        url: endMarker,
         size: {width: 50, height: 50, f: 'px', b: 'px',},
         scaledSize: {width: 30, height: 30, f: 'px', b: 'px',}
       }
@@ -61,9 +71,9 @@ export default {
       
 
       this.markers.push({position: start});
-      this.markers.push({position: end});
+      this.endMarkers.push({position: end});
       this.center = start;
-    });   
+    }); 
   },
  
   methods: {

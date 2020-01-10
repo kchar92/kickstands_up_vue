@@ -42,7 +42,6 @@ export default {
       stations: [],
       center: { lat: 36.7783, lng: -119.4179 },
       markers: [],
-      coordinates: [],
       markerOptions: {
         url: startMarker,
         size: {width: 50, height: 50, f: 'px', b: 'px',},
