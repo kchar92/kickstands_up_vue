@@ -24,10 +24,6 @@
           <input type="text" class="form-control" v-model="rideEnd">
         </div>
         <div class="form-group">
-          <label>Distance:</label>
-          <input type="text" class="form-control" v-model="distance">
-        </div>
-        <div class="form-group">
           <label>Bike type:</label>
           <input type="text" class="form-control" v-model="bikeType">
         </div>
