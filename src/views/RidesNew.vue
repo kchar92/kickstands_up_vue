@@ -47,7 +47,6 @@ export default {
       rideDateTime: "",
       rideStart: "",
       rideEnd: "",
-      distance: "",
       bikeType: "",
       errors: []
     };
@@ -60,7 +59,6 @@ export default {
         date_time: this.rideDateTime,
         starting_point: this.rideStart,
         end_point: this.rideEnd,
-        ride_distance: this.distance,
         bike_type: this.bikeType
       };
       axios.post("/api/rides", params).then(response => {

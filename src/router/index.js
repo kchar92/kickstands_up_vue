@@ -7,7 +7,6 @@ import Logout from '../views/Logout.vue';
 import RidesIndex from '../views/RidesIndex.vue';
 import RidesNew from '../views/RidesNew.vue';
 import RidesShow from '../views/RidesShow.vue';
-import StationsIndex from '../views/StationsIndex.vue';
 
 Vue.use(VueRouter);
 
@@ -46,11 +45,6 @@ const routes = [
     path: '/rides/:id',
     name: 'rides-show',
     component: RidesShow
-  },
-  {
-    path: '/stations',
-    name: 'stations',
-    component: StationsIndex
   }
 ];
 
