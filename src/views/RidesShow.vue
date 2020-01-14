@@ -5,15 +5,19 @@
         :center="center"
         :zoom="12"
         style="width:100%;  height: 500px;">
+    
+        <GmapMarker :key="index.id" v-for="(m, index) in gasMarkers" :position="m.position" @click="center=m.position" :clickable="true" :icon="gasMarker">  
+        </GmapMarker>
 
-        <gmap-marker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center=m.position" :icon="markerOptions">   
-        </gmap-marker>
 
-        <gmap-marker :key="index.id" v-for="(m, index) in endMarkers" :position="m.position" @click="center=m.position" :icon="endMarkerOptions">
-        </gmap-marker>
+        <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center=m.position" :icon="markerOptions">   
+        </GmapMarker>
+
+        <GmapMarker :key="index.id" v-for="(m, index) in endMarkers" :position="m.position" @click="center=m.position" :icon="endMarkerOptions">
+        </GmapMarker>
       </gmap-map>
 
-      
+      <!-- <button v-on:click="getRoute()">Avoid Highways</button> -->
     </div>
 
     <p>Name: {{ ride.name }}</p>
@@ -38,10 +42,12 @@ export default {
   data: function() {
     return {
       ride: {},
-      center: { lat: 45.508, lng: -73.587 },
+      center: {lat: 39.1976, lng: -120.2354},
+      gasMarkers: [],
       markers: [],
       endMarkers: [],
       infoWindows: [],
+      avoidHighways: false,
       markerOptions: {
         url: startMarker,
         size: {width: 50, height: 50, f: 'px', b: 'px',},
@@ -73,16 +79,52 @@ export default {
       this.markers.push({position: start});
       this.endMarkers.push({position: end});
       this.center = start;
+
+      this.markers.map(marker => {
+        this.$set(this.gasMarkers, 'open', true);
+        return this.gasMarkers;
+      });
+    }).then(()=> {
+      this.directionsService = new google.maps.DirectionsService();
+      this.directionsDisplay = new google.maps.DirectionsRenderer(({ suppressMarkers: true }));
+      this.directionsDisplay.setMap(this.$refs.map.$mapObject);
+      var vm = this;
+      vm.directionsService.route({
+        origin: `${this.ride.starting_point_lat},${this.ride.starting_point_long}`, // Can be coord or also a search query
+        destination: `${this.ride.end_point_lat},${this.ride.end_point_long}`,
+        travelMode: 'DRIVING',
+        avoidHighways: this.avoidHighways,
+      }, function(response, status) {
+        if (status === 'OK') {
+          vm.directionsDisplay.setDirections(response); // draws the polygon to the map
+        } else {
+          console.log('Directions request failed due to ' + status);
+        }
+      });
     }); 
+  },
+  mounted: function() {
+    console.log("whatever");
+    
   },
  
   methods: {
-    geolocate: function() {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+    getRoute: function() {
+      this.directionsService = new google.maps.DirectionsService();
+      this.directionsDisplay = new google.maps.DirectionsRenderer(({ suppressMarkers: true }));
+      this.directionsDisplay.setMap(this.$refs.map.$mapObject);
+      var vm = this;
+      vm.directionsService.route({
+        origin: `${this.ride.starting_point_lat},${this.ride.starting_point_long}`, // Can be coord or also a search query
+        destination: `${this.ride.end_point_lat},${this.ride.end_point_long}`,
+        travelMode: 'DRIVING',
+        avoidHighways: this.avoidHighways = true,
+      }, function(response, status) {
+        if (status === 'OK') {
+          vm.directionsDisplay.setDirections(response); // draws the polygon to the map
+        } else {
+          console.log('Directions request failed due to ' + status);
+        }
       });
     }
   }

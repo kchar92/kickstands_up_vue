@@ -1,79 +1,52 @@
 <template>
 
    <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/logout">Logout</router-link>
-      <br>
-      <router-link to="/rides?attending=true">My rides</router-link> |
-      <router-link to="/rides?attending=false">Rides</router-link> |
-      <router-link to="/rides/new">Make a new ride</router-link> |
-      <router-link to="/stations">Ethanol Free Stations</router-link>
-    </div>
+    <header id="header" class="alt">
+          <h1 id="logo"><a href="index.html">KickstandsUp</a></h1>
+          <nav id="nav">
+            <ul>
+              <li class="current"><a href="index.html">Welcome</a></li>
+              <li class="submenu">
+                <a href="/login">Login</a>
+                <ul>
+                  <li><a href="left-sidebar.html">Left Sidebar</a></li>
+                  <li><a href="right-sidebar.html">Right Sidebar</a></li>
+                  <li><a href="no-sidebar.html">No Sidebar</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  <li class="submenu">
+                    <a href="#">Submenu</a>
+                    <ul>
+                      <li><a href="#">Dolore Sed</a></li>
+                      <li><a href="#">Consequat</a></li>
+                      <li><a href="#">Lorem Magna</a></li>
+                      <li><a href="#">Sed Magna</a></li>
+                      <li><a href="#">Ipsum Nisl</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="/signup" class="button primary">Sign Up</a></li>
+            </ul>
+          </nav>
+        </header>
+
     <router-view/>
-  </div>
-  <!-- BOOTSTRAP -->
- <!--  <div id="app">
-    <div class="container">
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand">KickstandsUp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <footer id="footer">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Get Started
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/rides?attending=true">My Rides</a>
-                <a class="dropdown-item" href="/rides?attending=false">Rides</a>
-                <a class="dropdown-item" href="/rides/new">Create Ride</a>
-              </div>
-            </li>
-      
+          <ul class="icons">
+            <li><a href="#" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands circle fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands circle fa-google-plus-g"><span class="label">Google+</span></a></li>
+            <li><a href="#" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon brands circle fa-dribbble"><span class="label">Dribbble</span></a></li>
           </ul>
-          <li class="navbar-nav ml-auto">
-            <a class="nav-link" href="/signup">Sign Up</a>
-            <a class="nav-link" href="/login">Login</a>
-            <a class="nav-link" href="/logout">Logout</a>    
-          </li>
-        </div>
-      </nav>
-      <router-view/>
-    </div>
-  </div> -->
+
+
+    </footer>
+  </div>
 </template>
 
 <style>
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
