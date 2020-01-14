@@ -24,10 +24,6 @@
           <input type="text" class="form-control" v-model="rideEnd">
         </div>
         <div class="form-group">
-          <label>Distance:</label>
-          <input type="text" class="form-control" v-model="distance">
-        </div>
-        <div class="form-group">
           <label>Bike type:</label>
           <input type="text" class="form-control" v-model="bikeType">
         </div>
@@ -51,7 +47,6 @@ export default {
       rideDateTime: "",
       rideStart: "",
       rideEnd: "",
-      distance: "",
       bikeType: "",
       errors: []
     };
@@ -64,7 +59,6 @@ export default {
         date_time: this.rideDateTime,
         starting_point: this.rideStart,
         end_point: this.rideEnd,
-        ride_distance: this.distance,
         bike_type: this.bikeType
       };
       axios.post("/api/rides", params).then(response => {
