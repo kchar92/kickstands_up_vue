@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div id="map">
-      <gmap-map
+      <GmapMap ref="map"
         :center="center"
-        :zoom="12"
+        :zoom="10"
         style="width:100%;  height: 500px;">
     
         <GmapMarker :key="index.id" v-for="(m, index) in gasMarkers" :position="m.position" @click="center=m.position" :clickable="true" :icon="gasMarker">  
@@ -15,9 +15,10 @@
 
         <GmapMarker :key="index.id" v-for="(m, index) in endMarkers" :position="m.position" @click="center=m.position" :icon="endMarkerOptions">
         </GmapMarker>
-      </gmap-map>
+      </GmapMap>
 
       <!-- <button v-on:click="getRoute()">Avoid Highways</button> -->
+
     </div>
 
     <p>Name: {{ ride.name }}</p>
@@ -34,11 +35,16 @@
 
 <script>
 import * as VueGoogleMaps from "vue2-google-maps";
+import {gmapApi} from 'vue2-google-maps';
 import axios from "axios";
+const gasMarker = ('http://maps.google.com/mapfiles/kml/shapes/gas_stations.png');
 const startMarker = ('http://maps.google.com/mapfiles/kml/shapes/motorcycling.png');
 const endMarker = ('http://maps.google.com/mapfiles/kml/shapes/flag.png');
+
 export default {
-  
+  computed: {
+    google: gmapApi
+  },
   data: function() {
     return {
       ride: {},
@@ -57,11 +63,21 @@ export default {
         url: endMarker,
         size: {width: 50, height: 50, f: 'px', b: 'px',},
         scaledSize: {width: 30, height: 30, f: 'px', b: 'px',}
+      },
+      gasMarker: {
+        url: gasMarker,
+        size: {width: 25, height: 25, f: 'px', b: 'px',},
+        scaledSize: {width: 25, height: 25, f: 'px', b: 'px',}
       }
       
     };
   },
   created: function() {
+
+    axios.get("/api/stations").then(response => {
+      console.log(response.data);
+      this.gasMarkers = response.data;    
+    });
 
     axios.get("/api/rides/" + this.$route.params.id).then(response => {
       this.ride = response.data;
@@ -75,6 +91,10 @@ export default {
         lng: this.ride.end_point_long
       };
       
+
+      // axios.get(`/api/route?starting_location=${start["lat"]},${start["lng"]}&end_location=${end["lat"]},${end["lng"]}`).then(response => {
+      //   console.log(response);
+      // });
 
       this.markers.push({position: start});
       this.endMarkers.push({position: end});
