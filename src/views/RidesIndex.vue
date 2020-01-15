@@ -1,6 +1,34 @@
 <template>
+
+  <section id="banner">
+
+    <header class="major">
+      <h2>Rides</h2>
+    </header>
+
+    <div class="row">
+      <div class="inner">
+        <div v-for="ride in rides">
+        <section>
+          <header>
+            <h3>{{ ride.ride }}</h3>
+          </header>
+          <p>Date & Time: {{ ride.date_time }}</p>
+          <router-link v-bind:to="`/rides/${ride.id}`">More details</router-link>
+          <br>
+          <button v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
+          <br>
+          <br>
+        </section>
+      </div>
+      </div>
+    </div>
+
+  </section>
+
+
+<!-- 
   <div class="rides-index">
-    <!-- <button v-on:click="otherRides()">See other rides</button> -->
     <h1>{{ message }}</h1>
     <div v-for="ride in rides">
       <p>Name: {{ ride.ride }}</p>
@@ -8,10 +36,9 @@
       <router-link v-bind:to="`/rides/${ride.id}`">More details</router-link>
       <br>
       <button v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
-      
       <hr>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style>

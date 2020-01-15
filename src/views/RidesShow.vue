@@ -1,33 +1,42 @@
 <template>
-  <div class="container">
-    <div id="map">
-      <GmapMap ref="map"
-        :center="center"
-        :zoom="10"
-        style="width:100%;  height: 500px;">
-    
-        <GmapMarker :key="index.id" v-for="(m, index) in gasMarkers" :position="m.position" @click="center=m.position" :clickable="true" :icon="gasMarker">  
-        </GmapMarker>
+    <section id="banner">
+
+      <div class="content">
+        <section>
+          <header>
+            <h3>{{ ride.name }}</h3>
+          </header>
+          <div class="container">
+            <div id="map">
+              <GmapMap ref="map"
+                :center="center"
+                :zoom="10"
+                style="width:100%;  height: 500px;">
+            
+                <GmapMarker :key="index.id" v-for="(m, index) in gasMarkers" :position="m.position" @click="center=m.position" :clickable="true" :icon="gasMarker">  
+                </GmapMarker>
 
 
-        <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center=m.position" :icon="markerOptions">   
-        </GmapMarker>
+                <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center=m.position" :icon="markerOptions">   
+                </GmapMarker>
 
-        <GmapMarker :key="index.id" v-for="(m, index) in endMarkers" :position="m.position" @click="center=m.position" :icon="endMarkerOptions">
-        </GmapMarker>
-      </GmapMap>
+                <GmapMarker :key="index.id" v-for="(m, index) in endMarkers" :position="m.position" @click="center=m.position" :icon="endMarkerOptions">
+                </GmapMarker>
+              </GmapMap>
 
-      <!-- <button v-on:click="getRoute()">Avoid Highways</button> -->
+              <button v-on:click="getRoute()">Avoid Highways</button>
+            </div>
+              <p>Date & Time: {{ ride.date_time }}</p>
+              <p>Starting: {{ ride.starting_point }}</p>
+              <p>Ending: {{ ride.end_point }}</p>
+              <p>Bike Type: {{ ride.bike_type }}</p>
 
-    </div>
+          </div>
+        </section>
+      </div>
 
-    <p>Name: {{ ride.name }}</p>
-    <p>Date & Time: {{ ride.date_time }}</p>
-    <p>Starting: {{ ride.starting_point }}</p>
-    <p>Ending: {{ ride.end_point }}</p>
-    <p>Bike Type: {{ ride.bike_type }}</p>
-
-  </div>
+      </section>
+  
 </template>
 
 <style>
@@ -105,29 +114,27 @@ export default {
         return this.gasMarkers;
       });
     }).then(()=> {
-      this.directionsService = new google.maps.DirectionsService();
-      this.directionsDisplay = new google.maps.DirectionsRenderer(({ suppressMarkers: true }));
-      this.directionsDisplay.setMap(this.$refs.map.$mapObject);
-      var vm = this;
-      vm.directionsService.route({
-        origin: `${this.ride.starting_point_lat},${this.ride.starting_point_long}`, // Can be coord or also a search query
-        destination: `${this.ride.end_point_lat},${this.ride.end_point_long}`,
-        travelMode: 'DRIVING',
-        avoidHighways: this.avoidHighways,
-      }, function(response, status) {
-        if (status === 'OK') {
-          vm.directionsDisplay.setDirections(response); // draws the polygon to the map
-        } else {
-          console.log('Directions request failed due to ' + status);
-        }
-      });
+      setTimeout(() => {
+        this.directionsService = new google.maps.DirectionsService();
+        this.directionsDisplay = new google.maps.DirectionsRenderer(({ suppressMarkers: true }));
+        this.directionsDisplay.setMap(this.$refs.map.$mapObject);
+        var vm = this;
+        vm.directionsService.route({
+          origin: `${this.ride.starting_point_lat},${this.ride.starting_point_long}`, // Can be coord or also a search query
+          destination: `${this.ride.end_point_lat},${this.ride.end_point_long}`,
+          travelMode: 'DRIVING',
+          avoidHighways: this.avoidHighways,
+        }, function(response, status) {
+          if (status === 'OK') {
+            vm.directionsDisplay.setDirections(response); // draws the polygon to the map
+          } else {
+            console.log('Directions request failed due to ' + status);
+          }
+        });
+      }, 1000);
+      
     }); 
   },
-  mounted: function() {
-    console.log("whatever");
-    
-  },
- 
   methods: {
     getRoute: function() {
       this.directionsService = new google.maps.DirectionsService();

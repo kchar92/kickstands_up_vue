@@ -2,29 +2,20 @@
 
    <div id="app">
     <header id="header" class="alt">
-          <h1 id="logo"><a href="index.html">KickstandsUp</a></h1>
+          <h1 id="logo"><a href="/login">KickstandsUp</a></h1>
           <nav id="nav">
             <ul>
-              <li class="current"><a href="index.html">Welcome</a></li>
-              <li class="submenu">
+              <li><a href="/rides?attending=true">My Rides</a></li>
+              <li><a href="/rides?attending=false">Rides</a></li>
+              <li><a href="/rides/new">Create A Ride</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/logout">Logout</a></li>
+              <!-- <li class="submenu">
                 <a href="/login">Login</a>
                 <ul>
-                  <li><a href="left-sidebar.html">Left Sidebar</a></li>
-                  <li><a href="right-sidebar.html">Right Sidebar</a></li>
-                  <li><a href="no-sidebar.html">No Sidebar</a></li>
-                  <li><a href="contact.html">Contact</a></li>
-                  <li class="submenu">
-                    <a href="#">Submenu</a>
-                    <ul>
-                      <li><a href="#">Dolore Sed</a></li>
-                      <li><a href="#">Consequat</a></li>
-                      <li><a href="#">Lorem Magna</a></li>
-                      <li><a href="#">Sed Magna</a></li>
-                      <li><a href="#">Ipsum Nisl</a></li>
-                    </ul>
-                  </li>
+                  <li><a href="/logout">Logout</a></li>
                 </ul>
-              </li>
+              </li> -->
               <li><a href="/signup" class="button primary">Sign Up</a></li>
             </ul>
           </nav>
