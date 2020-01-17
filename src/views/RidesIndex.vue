@@ -3,6 +3,31 @@
   <section id="banner">
 
     <header class="major">
+      <h2><strong>Rides</strong></h2>
+    </header>
+
+    <div v-for="ride in rides" class="column">
+      <div class="inner">
+
+        <section>
+          <header>
+            <h3>{{ ride.ride }}</h3>
+          </header>
+          <p>Date & Time: {{ ride.date_time | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>
+          <br>
+          <router-link v-bind:to="`/rides/${ride.id}`">More details</router-link>
+          <br>
+          <button v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
+        </section>
+
+      </div>
+      
+    </div>
+
+  </section>
+  <!-- <section id="banner">
+
+    <header class="major">
       <h2>Rides</h2>
     </header>
 
@@ -24,7 +49,7 @@
       </div>
     </div>
 
-  </section>
+  </section> -->
 
 </template>
 

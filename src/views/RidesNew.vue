@@ -15,14 +15,11 @@
             <label>Date & Time:</label>
             <datetime
             type="datetime"
-            format="yyyy/MM/dd HH:mm"
+            format="MM/dd/yyyy HH:mm"
             v-model="rideDateTime"
             use12-hour auto>
               
             </datetime>
-            <!-- <label>Date & Time:</label>
-            <datetime format="DD/MM/YYYY h:i" width="100px" v-model="rideDateTime"></datetime> -->
-            <!-- <input type="text" class="form-control" v-model="rideDateTime"> -->
           </div>
           <div class="form-group">
             <label>Start location:</label>
