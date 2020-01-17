@@ -24,9 +24,9 @@
                 </GmapMarker>
               </GmapMap>
 
-              <button v-on:click="getRoute()">Avoid Highways</button>
+              <!-- <button v-on:click="getRoute()">Avoid Highways</button> -->
             </div>
-              <p>Date & Time: {{ ride.date_time }}</p>
+              <p>Date & Time: {{ ride.date_time | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>
               <p>Starting: {{ ride.starting_point }}</p>
               <p>Ending: {{ ride.end_point }}</p>
               <p>Bike Type: {{ ride.bike_type }}</p>
@@ -43,6 +43,7 @@
 </style>
 
 <script>
+var moment = require('moment');
 import * as VueGoogleMaps from "vue2-google-maps";
 import {gmapApi} from 'vue2-google-maps';
 import axios from "axios";

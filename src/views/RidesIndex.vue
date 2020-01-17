@@ -13,7 +13,7 @@
           <header>
             <h3>{{ ride.ride }}</h3>
           </header>
-          <p>Date & Time: {{ ride.date_time }}</p>
+          <p>Date & Time: {{ ride.date_time | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>
           <router-link v-bind:to="`/rides/${ride.id}`">More details</router-link>
           <br>
           <button v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
@@ -26,19 +26,6 @@
 
   </section>
 
-
-<!-- 
-  <div class="rides-index">
-    <h1>{{ message }}</h1>
-    <div v-for="ride in rides">
-      <p>Name: {{ ride.ride }}</p>
-      <p>Date & Time: {{ ride.date_time }}</p>
-      <router-link v-bind:to="`/rides/${ride.id}`">More details</router-link>
-      <br>
-      <button v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
-      <hr>
-    </div>
-  </div> -->
 </template>
 
 <style>
@@ -46,13 +33,13 @@
 
 <script>
 import axios from "axios";
+var moment = require('moment');
 export default {
   data: function() {
     return {
       message: "Rides",
       rides: [],
       attending: this.$route.query.attending !== "true",
-      date: Date.now()
     };
   },
   created: function() {

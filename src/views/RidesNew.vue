@@ -13,7 +13,15 @@
           </div>
           <div class="form-group">
             <label>Date & Time:</label>
-            <datetime format="DD/MM/YYYY h:i" width="100px" v-model="rideDateTime"></datetime>
+            <datetime
+            type="datetime"
+            format="yyyy/MM/dd HH:mm"
+            v-model="rideDateTime"
+            use12-hour auto>
+              
+            </datetime>
+            <!-- <label>Date & Time:</label>
+            <datetime format="DD/MM/YYYY h:i" width="100px" v-model="rideDateTime"></datetime> -->
             <!-- <input type="text" class="form-control" v-model="rideDateTime"> -->
           </div>
           <div class="form-group">
@@ -40,10 +48,12 @@
 </style>
 
 <script>
-import datetime from 'vuejs-datetimepicker';
 import axios from "axios";
+import Vue from 'vue';
+import { Datetime } from 'vue-datetime';
+Vue.component('datetime', Datetime);
+
 export default {
-  components: { datetime },
   data: function() {
     return {
       rideName: "",
