@@ -78,6 +78,10 @@ input, select, textarea {
 
 /* Basic */
 
+  section, .inner {
+    padding: 1.2em;
+  }
+
 	html {
 		box-sizing: border-box;
 	}
@@ -153,7 +157,7 @@ input, select, textarea {
 
 	h3 {
 		font-size: 1.15em;
-		letter-spacing: 0.025em;
+		letter-spacing: 0.100em;
 	}
 
 	sub {
@@ -2527,6 +2531,8 @@ input, select, textarea {
 			opacity: 1;
 		}
 	}
+
+ 
 
 	#banner {
 		background-attachment: scroll, scroll, scroll, fixed;

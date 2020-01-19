@@ -5,9 +5,9 @@ import axios from "axios";
 import * as VueGoogleMaps from "vue2-google-maps";
 // import "bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { Datetime } from 'vue-datetime'
+import { Datetime } from 'vue-datetime';
 // You need a specific loader for CSS files
-import 'vue-datetime/dist/vue-datetime.css'
+import 'vue-datetime/dist/vue-datetime.css';
 
 Vue.use(Datetime);
 Vue.use(require('vue-moment'));

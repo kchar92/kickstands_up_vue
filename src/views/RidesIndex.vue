@@ -1,6 +1,6 @@
 <template>
 
-  <section id="banner">
+ <!--  <section id="banner">
 
     <header class="major">
       <h2><strong>Rides</strong></h2>
@@ -24,14 +24,12 @@
       
     </div>
 
-  </section>
-  <!-- <section id="banner">
+  </section> -->
+  <section id="banner">
 
     <header class="major">
       <h2>Rides</h2>
     </header>
-
-    <div class="row">
       <div class="inner">
         <div v-for="ride in rides">
         <section>
@@ -46,10 +44,9 @@
           <br>
         </section>
       </div>
-      </div>
     </div>
 
-  </section> -->
+  </section>
 
 </template>
 
