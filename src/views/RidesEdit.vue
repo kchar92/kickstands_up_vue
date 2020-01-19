@@ -1,39 +1,43 @@
 <template>
-  <div class="container">
-      <form v-on:submit.prevent="editRide(ride)">
-        <h1>Edit: {{ ride.name }}</h1>
-        <ul>
-          <li class="text-danger" v-for="error in errors">{{ error }}</li>
-        </ul>
-        <div class="form-group">
-          <label>Name:</label> 
-          <input type="text" class="form-control" v-model="ride.rideName">
-        </div>
-        <div class="form-group">
-          <label>Date & Time:</label>
-          <datetime
-            type="datetime"
-            format="MM/dd/yyyy HH:mm"
-            v-model="ride.dateTime"
-            use12-hour auto>
-              
-          </datetime>
-        </div>
-        <div class="form-group">
-          <label>Start Location:</label>
-          <input type="text" class="form-control" v-model="ride.rideStart">
-        </div>
-        <div class="form-group">
-          <label>End Location:</label>
-          <input type="text" class="form-control" v-model="ride.rideEnd">
-        </div>
-        <div class="form-group">
-          <label>Bike Type:</label>
-          <input type="text" class="form-control" v-model="ride.bikeType">
-        </div>
-        <input type="submit" class="btn btn-primary" value="Submit">
-      </form>
-    </div>
+  <section id="banner">
+    <div class="container">
+        <form v-on:submit.prevent="editRide(ride)">
+          <h1>Edit: {{ ride.name }}</h1>
+          <div class="inner">
+            <div class="form-group">
+              <label>Name:</label> 
+              <input type="text" class="form-control" v-model="ride.rideName">
+            </div>
+            <div class="form-group">
+              <label>Date & Time:</label>
+              <datetime
+                type="datetime"
+                format="MM/dd/yyyy HH:mm"
+                v-model="ride.dateTime"
+                use12-hour auto>
+                  
+              </datetime>
+            </div>
+            <div class="form-group">
+              <label>Start Location:</label>
+              <input type="text" class="form-control" v-model="ride.rideStart">
+            </div>
+            <div class="form-group">
+              <label>End Location:</label>
+              <input type="text" class="form-control" v-model="ride.rideEnd">
+            </div>
+            <div class="form-group">
+              <label>Bike Type:</label>
+              <input type="text" class="form-control" v-model="ride.bikeType">
+            </div>
+            <ul>
+              <li class="text-danger" v-for="error in errors">{{ error }}</li>
+            </ul>
+            <input type="submit" class="btn btn-primary" value="Submit">
+          </div>
+        </form>
+      </div>
+    </section>
 </template>
 
 <style>

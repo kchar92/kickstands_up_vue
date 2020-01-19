@@ -1,41 +1,42 @@
 <template>
-    <section id="banner">
+  <section id="banner">
 
-      <div class="content">
-        <section>
-          <header>
-            <h3>{{ ride.name }}</h3>
-          </header>
-          <div class="container">
-            <div id="map">
-              <GmapMap ref="map"
-                :center="center"
-                :zoom="10"
-                style="width:100%;  height: 500px;">
-            
-                <GmapMarker :key="index.id" v-for="(m, index) in gasMarkers" :position="m.position" @click="center=m.position" :clickable="true" :icon="gasMarker">  
-                </GmapMarker>
+    <div class="content">
+      <section>
+        <header>
+          <h3>{{ ride.name }}</h3>
+        </header>
+        <div class="container">
+          <div id="map">
+            <GmapMap ref="map"
+              :center="center"
+              :zoom="10"
+              style="width:100%;  height: 500px;">
+          
+              <GmapMarker :key="index.id" v-for="(m, index) in gasMarkers" :position="m.position" @click="center=m.position" :clickable="true" :icon="gasMarker">  
+              </GmapMarker>
 
 
-                <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center=m.position" :icon="markerOptions">   
-                </GmapMarker>
+              <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" @click="center=m.position" :icon="markerOptions">   
+              </GmapMarker>
 
-                <GmapMarker :key="index.id" v-for="(m, index) in endMarkers" :position="m.position" @click="center=m.position" :icon="endMarkerOptions">
-                </GmapMarker>
-              </GmapMap>
+              <GmapMarker :key="index.id" v-for="(m, index) in endMarkers" :position="m.position" @click="center=m.position" :icon="endMarkerOptions">
+              </GmapMarker>
+            </GmapMap>
 
-              <!-- <button v-on:click="getRoute()">Avoid Highways</button> -->
-            </div>
-              <p>Date & Time: {{ ride.date_time | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>
-              <p>Starting: {{ ride.starting_point }}</p>
-              <p>Ending: {{ ride.end_point }}</p>
-              <p>Bike Type: {{ ride.bike_type }}</p>
-
+            <!-- <button v-on:click="getRoute()">Avoid Highways</button> -->
           </div>
-        </section>
-      </div>
-
+            <p>Created by: {{ ride.creator }}</p>
+            <p>Date & Time: {{ ride.date_time | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>
+            <p>Starting: {{ ride.starting_point }}</p>
+            <p>Ending: {{ ride.end_point }}</p>
+            <p>Bike Type: {{ ride.bike_type }}</p>
+            <router-link v-if="ride.creator === creator" v-bind:to="`/rides/${ride.id}/edit`">Edit Ride</router-link>
+        </div>
       </section>
+    </div>
+
+    </section>
   
 </template>
 
@@ -63,6 +64,7 @@ export default {
       markers: [],
       endMarkers: [],
       infoWindows: [],
+      creator: "",
       avoidHighways: false,
       markerOptions: {
         url: startMarker,
@@ -83,9 +85,12 @@ export default {
     };
   },
   created: function() {
+    axios.get("/api/users/").then(response => {
+      this.creator = response.data["name"];
+      console.log(this.creator);
+    });
 
     axios.get("/api/stations").then(response => {
-      console.log(response.data);
       this.gasMarkers = response.data;    
     });
 
