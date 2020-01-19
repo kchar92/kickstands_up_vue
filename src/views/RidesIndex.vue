@@ -39,7 +39,7 @@
           <p>Date & Time: {{ ride.date_time | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>
           <router-link v-bind:to="`/rides/${ride.id}`">More details</router-link>
           <br>
-          <button v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
+          <button id="add" v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
           <br>
           <br>
         </section>

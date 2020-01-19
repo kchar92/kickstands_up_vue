@@ -82,6 +82,16 @@ input, select, textarea {
     padding: 1.2em;
   }
 
+  #add {
+    margin-top: 1em;
+  }
+
+  section, p {
+    padding: 1em;
+  }
+
+
+
 	html {
 		box-sizing: border-box;
 	}
