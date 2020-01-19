@@ -102,10 +102,6 @@ export default {
       };
       
 
-      // axios.get(`/api/route?starting_location=${start["lat"]},${start["lng"]}&end_location=${end["lat"]},${end["lng"]}`).then(response => {
-      //   console.log(response);
-      // });
-
       this.markers.push({position: start});
       this.endMarkers.push({position: end});
       this.center = start;
