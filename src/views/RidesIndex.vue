@@ -1,30 +1,4 @@
 <template>
-
- <!--  <section id="banner">
-
-    <header class="major">
-      <h2><strong>Rides</strong></h2>
-    </header>
-
-    <div v-for="ride in rides" class="column">
-      <div class="inner">
-
-        <section>
-          <header>
-            <h3>{{ ride.ride }}</h3>
-          </header>
-          <p>Date & Time: {{ ride.date_time | moment("dddd, MMMM Do YYYY, h:mm a") }}</p>
-          <br>
-          <router-link v-bind:to="`/rides/${ride.id}`">More details</router-link>
-          <br>
-          <button v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
-        </section>
-
-      </div>
-      
-    </div>
-
-  </section> -->
   <section id="banner">
 
     <header class="major">
@@ -41,6 +15,7 @@
           <br>
           <button id="add" v-if="attending" v-on:click="addRide(ride)">Add to my rides</button>
           <br>
+          <!-- <button id="add" v-if="!attending" v-on:click="removeRide(ride)">Remove ride</button> -->
           <br>
         </section>
       </div>
@@ -73,14 +48,25 @@ export default {
   },
   methods: {
     addRide: function(ride) {
-      console.log('adding ride');
       var params = {
         ride_id: ride.id
       };
+      var index = this.rides.indexOf(ride);
       axios.post("/api/ride_users", params).then(response => {
-        this.rides.splice(ride, 1);
+        this.rides.splice(index, 1);
       });
     },
+    // removeRide: function(ride) {
+    //   var params = {
+    //     user_id: 7,
+    //     ride_id: ride.id
+    //   };
+    //   var index = this.rides.indexOf(ride);
+    //   console.log(params);
+    //   axios.delete("/api/ride_users/" + 60).then(response => {
+    //     this.rides.splice(index, 1);
+    //   });
+    // }
   },
   watch: {
     "$route": function() {

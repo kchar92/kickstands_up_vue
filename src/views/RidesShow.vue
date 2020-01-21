@@ -63,7 +63,6 @@ export default {
       gasMarkers: [],
       markers: [],
       endMarkers: [],
-      infoWindows: [],
       creator: "",
       avoidHighways: false,
       markerOptions: {
@@ -87,7 +86,6 @@ export default {
   created: function() {
     axios.get("/api/users/").then(response => {
       this.creator = response.data["name"];
-      console.log(this.creator);
     });
 
     axios.get("/api/stations").then(response => {
@@ -156,6 +154,6 @@ export default {
         }
       });
     }
-  }
+  },
 };
 </script>
