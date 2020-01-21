@@ -42,7 +42,6 @@ export default {
   created: function() {
     console.log(this.attending);
     axios.get("/api/rides?attending=" + this.$route.query.attending).then(response => {
-      console.log(response.data);
       this.rides = response.data;
     });
   },
