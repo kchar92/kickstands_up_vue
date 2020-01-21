@@ -71,7 +71,7 @@ export default {
         bike_type: ride.bikeType
       };
       axios.patch("/api/rides/" + ride.id, params).then(response => {
-        this.$router.push("/rides");
+        this.$router.push("/rides/" + ride.id);
       })
         .catch(error => {
           this.errors = error.response.data.errors;
